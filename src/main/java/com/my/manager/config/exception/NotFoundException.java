@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.my.manager.common.CommonResult;
 
-@Controller
+//@Controller
 public class NotFoundException implements ErrorController {
     @Override
     public String getErrorPath() {

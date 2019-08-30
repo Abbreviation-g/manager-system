@@ -8,4 +8,30 @@
 	<select id="queryUserById" resultType="com.my.manager.bean.UserBean">
 		select * from user where id = #{id}
 	</select>
+	
+	<select id="queryRoleByUserId" resultType="com.my.manager.bean.RoleBean">
+		SELECT
+		  t1.`id`,
+		  t1.`role_name` AS roleName
+		FROM
+		  `role` AS t1
+		  JOIN `user_role` AS t2
+		    ON t1.`id` = t2.`role_id`
+		  JOIN `user` AS t3
+		    ON t2.`user_id` = t3.`id`
+		WHERE t3.`id` = #{userId}
+	</select>
+	
+	<select id="queryAuthByRoleId" resultType="com.my.manager.bean.AuthBean">
+		SELECT
+		  t1.`id`,
+		  t1.`auth_name` AS authName
+		FROM
+		  `auth` AS t1
+		  JOIN `role_auth` AS t2
+		    ON t1.`id` = t2.`auth_id`
+		  JOIN role AS t3
+		    ON t2.`role_id` = t3.`id`
+		WHERE t3.`id` = #{roleId}
+	</select>
 </mapper>
